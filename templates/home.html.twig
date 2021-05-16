@@ -1,13 +1,175 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-        </div>
+
+    <div class="container py-3">
+        <header>
+            <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+                    <span class="fs-4">Super paczka</span>
+                </a>
+
+                <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="#">O nas</a>
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="#">Kurierzy</a>
+                    <a class="me-3 py-2 text-dark text-decoration-none" href="#">Pomoc</a>
+                    <a class="py-2 text-dark text-decoration-none" href="#">Cennik</a>
+                </nav>
+            </div>
+
+            <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+                <h1 class="display-4 fw-normal">Cennik</h1>
+                <p class="fs-5 text-muted">It is a long established fact that a reader will be distracted by the
+                    readable content of a page when looking at its layout.</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Eko</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">8<small class="text-muted fw-light">zł</small>
+                            </h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Do 4 dni roboczych</li>
+                                <li>Ubezpieczenie 500zł</li>
+                                <li>Max 3kg</li>
+                            </ul>
+                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Wybierz</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Premium</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">13<small class="text-muted fw-light">zł</small>
+                            </h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Do 2 dni roboczych</li>
+                                <li>Ubezpieczenie 5000zł</li>
+                                <li>Max 8kg</li>
+                            </ul>
+                            <button type="button" class="w-100 btn btn-lg btn-primary">Wybierz</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                        <div class="card-header py-3 text-white bg-primary border-primary">
+                            <h4 class="my-0 fw-normal">Super</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">20<small class="text-muted fw-light">zł</small>
+                            </h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Do 2 dni roboczych</li>
+                                <li>Ubezpieczenie 1000zł</li>
+                                <li>Max 25kg</li>
+                            </ul>
+                            <button type="button" class="w-100 btn btn-lg btn-primary">Wybierz</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="display-6 text-center mb-4">Prównaj paczki</h2>
+
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                    <tr>
+                        <th style="width: 34%;"></th>
+                        <th style="width: 22%;">Czas dostawy</th>
+                        <th style="width: 22%;">Waga</th>
+                        <th style="width: 22%;">Ubezpiecznie</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="text-start">Eko</th>
+                        <td class="text-muted">
+                            Do 4 dni
+                        </td>
+                        <td class="text-muted">
+                            Do 3kg
+                        </td>
+                        <td class="text-muted">
+                            500zł
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-start">Premium</th>
+                        <td class="text-muted">
+                            Do 2 dni
+                        </td>
+                        <td class="text-muted">
+                            Do 8kg
+                        </td>
+                        <td class="text-muted">
+                            5 000zł
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-start">Super</th>
+                        <td class="text-muted">
+                            Do 2 dni
+                        </td>
+                        <td class="text-muted">
+                            Do 25kg
+                        </td>
+                        <td class="text-muted">
+                            10 000zł
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+                <div class="col-12 col-md">
+                    Super paczka
+                    <small class="d-block mb-3 text-muted">&copy; 2021</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Paczki</h5>
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Eko</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Premium</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Super</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Kurierzy</h5>
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">DPD</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">DHL</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Poczta Polska</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Inpost</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Pomoc</h5>
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Jak zamówić paczkę</a>
+                        </li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Co muszę wiedzieć</a>
+                        </li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Jak założyć konto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
+
+
 {% endblock body %}
