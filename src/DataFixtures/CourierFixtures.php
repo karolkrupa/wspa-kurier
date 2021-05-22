@@ -2,47 +2,40 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\ParcelType;
-use App\Entity\User;
+use App\Entity\Courier;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class ParcelTypeFixtures extends Fixture
+class CourierFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $types = [
+        $couriers = [
             [
-                'name' => 'Eko',
-                'price' => 8,
-                'realizationDays' => 4,
-                'insuranceAmount' => 500,
-                'maxWeight' => 3
+                'name' => 'DPD',
+                'www' => 'http://dpd.pl'
             ],
             [
-                'name' => 'Premium',
-                'price' => 13,
-                'realizationDays' => 2,
-                'insuranceAmount' => 5000,
-                'maxWeight' => 8
+                'name' => 'DHL',
+                'www' => 'http://dhl.pl'
             ],
             [
-                'name' => 'Super',
-                'price' => 20,
-                'realizationDays' => 2,
-                'insuranceAmount' => 1000,
-                'maxWeight' => 25
+                'name' => 'Poczta Polska',
+                'www' => 'http://pocztapolska.pl'
+            ],
+            [
+                'name' => 'InPost',
+                'www' => 'http://inpost.pl'
             ]
         ];
 
-        foreach ($types as $typeData) {
-            $type = new ParcelType();
-            foreach ($typeData as $property => $value) {
+        foreach ($couriers as $courierData) {
+            $courier = new Courier();
+            foreach ($courierData as $property => $value) {
                 $method = 'set' . ucfirst($property);
-                $type->$method($value);
+                $courier->$method($value);
             }
-            $manager->persist($type);
+            $manager->persist($courier);
         }
 
         $manager->flush();

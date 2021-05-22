@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Courier;
 use App\Entity\ParcelType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,8 +20,13 @@ class IndexController extends AbstractController
             ->getRepository(ParcelType::class)
             ->findAll();
 
+        $couriers = $this->getDoctrine()->getManager()
+            ->getRepository(Courier::class)
+            ->findAll();
+
         return $this->render('home.html.twig', [
-            'parcelTypes' => $parcelTypes
+            'parcelTypes' => $parcelTypes,
+            'couriers' => $couriers
         ]);
     }
 }

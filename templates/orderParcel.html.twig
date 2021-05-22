@@ -18,7 +18,7 @@
             </div>
 
             <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-                <h1 class="display-4 fw-normal">Cennik</h1>
+                <h1 class="display-4 fw-normal">Zamów paczkę</h1>
                 <p class="fs-5 text-muted">It is a long established fact that a reader will be distracted by the
                     readable content of a page when looking at its layout.</p>
             </div>
@@ -26,25 +26,49 @@
 
         <main>
             <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                {% for parcelType in parcelTypes %}
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm">
-                            <div class="card-header py-3">
-                                <h4 class="my-0 fw-normal">{{ parcelType.name }}</h4>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title pricing-card-title">8<small class="text-muted fw-light">zł</small>
-                                </h1>
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>Do {{ parcelType.realizationDays }} dni roboczych</li>
-                                    <li>Ubezpieczenie {{ parcelType.insuranceAmount }}zł</li>
-                                    <li>Max {{ parcelType.maxWeight }}kg</li>
-                                </ul>
-                                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Wybierz</button>
-                            </div>
-                        </div>
+                <h5>Twoje dane</h5>
+                <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress2" class="form-label">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">State</label>
+                    <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="inputZip">
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                            Check me out
+                        </label>
                     </div>
-                {% endfor %}
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
             </div>
 
             <h2 class="display-6 text-center mb-4">Prównaj paczki</h2>
