@@ -26,57 +26,25 @@
 
         <main>
             <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">Eko</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">8<small class="text-muted fw-light">zł</small>
-                            </h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Do 4 dni roboczych</li>
-                                <li>Ubezpieczenie 500zł</li>
-                                <li>Max 3kg</li>
-                            </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Wybierz</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">Premium</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">13<small class="text-muted fw-light">zł</small>
-                            </h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Do 2 dni roboczych</li>
-                                <li>Ubezpieczenie 5000zł</li>
-                                <li>Max 8kg</li>
-                            </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-primary">Wybierz</button>
+                {% for parcelType in parcelTypes %}
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">{{ parcelType.name }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">8<small class="text-muted fw-light">zł</small>
+                                </h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Do {{ parcelType.realizationDays }} dni roboczych</li>
+                                    <li>Ubezpieczenie {{ parcelType.insuranceAmount }}zł</li>
+                                    <li>Max {{ parcelType.maxWeight }}kg</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Wybierz</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                        <div class="card-header py-3 text-white bg-primary border-primary">
-                            <h4 class="my-0 fw-normal">Super</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">20<small class="text-muted fw-light">zł</small>
-                            </h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Do 2 dni roboczych</li>
-                                <li>Ubezpieczenie 1000zł</li>
-                                <li>Max 25kg</li>
-                            </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-primary">Wybierz</button>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             <h2 class="display-6 text-center mb-4">Prównaj paczki</h2>
@@ -92,42 +60,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row" class="text-start">Eko</th>
-                        <td class="text-muted">
-                            Do 4 dni
-                        </td>
-                        <td class="text-muted">
-                            Do 3kg
-                        </td>
-                        <td class="text-muted">
-                            500zł
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Premium</th>
-                        <td class="text-muted">
-                            Do 2 dni
-                        </td>
-                        <td class="text-muted">
-                            Do 8kg
-                        </td>
-                        <td class="text-muted">
-                            5 000zł
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Super</th>
-                        <td class="text-muted">
-                            Do 2 dni
-                        </td>
-                        <td class="text-muted">
-                            Do 25kg
-                        </td>
-                        <td class="text-muted">
-                            10 000zł
-                        </td>
-                    </tr>
+
+                    {% for parcelType in parcelTypes %}
+                        <tr>
+                            <th scope="row" class="text-start">
+                                {{ parcelType.name }}
+                            </th>
+                            <td class="text-muted">
+                                Do {{ parcelType.realizationDays }} dni
+                            </td>
+                            <td class="text-muted">
+                                Do {{ parcelType.maxWeight }}kg
+                            </td>
+                            <td class="text-muted">
+                                {{ parcelType.insuranceAmount }}zł
+                            </td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>

@@ -4,8 +4,8 @@
 namespace App\Controller;
 
 
+use App\Entity\ParcelType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
@@ -13,7 +13,14 @@ class IndexController extends AbstractController
     /**
      * @Route("/")
      */
-    public function indexAction() {
-        return $this->render('home.html.twig');
+    public function indexAction()
+    {
+        $parcelTypes = $this->getDoctrine()->getManager()
+            ->getRepository(ParcelType::class)
+            ->findAll();
+
+        return $this->render('home.html.twig', [
+            'parcelTypes' => $parcelTypes
+        ]);
     }
 }
