@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Courier;
 use App\Entity\ParcelType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +16,18 @@ class OrderParcelController extends AbstractController
      */
     public function indexAction(ParcelType $type)
     {
+        $parcelTypes = $this->getDoctrine()->getManager()
+            ->getRepository(ParcelType::class)
+            ->findAll();
+
+        $couriers = $this->getDoctrine()->getManager()
+            ->getRepository(Courier::class)
+            ->findAll();
+
         return $this->render('orderParcel.html.twig', [
-            'type' => $type
+            'type' => $type,
+            'parcelTypes' => $parcelTypes,
+            'couriers' => $couriers
         ]);
     }
 }

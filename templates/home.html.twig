@@ -40,7 +40,11 @@
                                     <li>Ubezpieczenie {{ parcelType.insuranceAmount }}zł</li>
                                     <li>Max {{ parcelType.maxWeight }}kg</li>
                                 </ul>
-                                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Wybierz</button>
+                                <a
+                                        type="button"
+                                        class="w-100 btn btn-lg btn-outline-primary"
+                                        href="{{ url('parcel.order', {type: parcelType.id }) }}"
+                                >Wybierz</a>
                             </div>
                         </div>
                     </div>
