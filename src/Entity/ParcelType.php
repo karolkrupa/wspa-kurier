@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ParcelTypeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class ParcelType
      * @ORM\Column(type="integer", nullable=true)
      */
     private $maxWeight;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Parcel::class, mappedBy="type")
+     */
+    private $parcels;
+
+    public function __construct()
+    {
+        $this->parcels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,36 @@ class ParcelType
     public function setMaxWeight(?int $maxWeight): self
     {
         $this->maxWeight = $maxWeight;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parcel[]
+     */
+    public function getParcels(): Collection
+    {
+        return $this->parcels;
+    }
+
+    public function addParcel(Parcel $parcel): self
+    {
+        if (!$this->parcels->contains($parcel)) {
+            $this->parcels[] = $parcel;
+            $parcel->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParcel(Parcel $parcel): self
+    {
+        if ($this->parcels->removeElement($parcel)) {
+            // set the owning side to null (unless already changed)
+            if ($parcel->getType() === $this) {
+                $parcel->setType(null);
+            }
+        }
 
         return $this;
     }
