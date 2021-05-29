@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Address
 {
+    public function __toString() {
+        return "{$this->firstName} {$this->lastName} {$this->street} {$this->city} {$this->postalCode}";
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

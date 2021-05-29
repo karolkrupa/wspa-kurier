@@ -1,0 +1,92 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+
+        </div>
+    </div>
+
+    <h2>Najnowsze zamówienia</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nadawca</th>
+                <th>Odbiorca</th>
+                <th>Zawartość</th>
+                <th>Dodatkowe informacje</th>
+                <th>Kurier</th>
+                <th>Typ</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for parcel in parcels %}
+                <tr>
+                    <td>
+                        {{ loop.index }}
+                    </td>
+                    <td>
+                        {{ parcel.senderAddress }}
+                    </td>
+                    <td>
+                        {{ parcel.recipientAddress }}
+                    </td>
+                    <td>
+                        {{ parcel.content }}
+                    </td>
+                    <td>
+                        {{ parcel.additionalInformations|default("Brak") }}
+                    </td>
+                    <td>
+                        {{ parcel.courier }}
+                    </td>
+                    <td>
+                        {{ parcel.type }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+{% block body_javascripts %}
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            datasets: [{
+                data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+                lineTension: 0,
+                backgroundColor: 'transparent',
+                borderColor: '#007bff',
+                borderWidth: 4,
+                pointBackgroundColor: '#007bff'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            },
+            legend: {
+                display: false,
+            }
+        }
+    });
+</script>
+
+{% endblock %}
