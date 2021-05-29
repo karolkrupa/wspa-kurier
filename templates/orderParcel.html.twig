@@ -1,168 +1,106 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <header>
+        <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+                <span class="fs-4">Super paczka</span>
+            </a>
 
-    <div class="container py-3">
-        <header>
-            <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-                <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-                    <span class="fs-4">Super paczka</span>
-                </a>
+            <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                <a class="me-3 py-2 text-dark text-decoration-none" href="#">O nas</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="#">Kurierzy</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="#">Pomoc</a>
+                <a class="py-2 text-dark text-decoration-none" href="#">Cennik</a>
+            </nav>
+        </div>
 
-                <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="#">O nas</a>
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="#">Kurierzy</a>
-                    <a class="me-3 py-2 text-dark text-decoration-none" href="#">Pomoc</a>
-                    <a class="py-2 text-dark text-decoration-none" href="#">Cennik</a>
-                </nav>
-            </div>
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal">Zamów paczkę</h1>
+            <p class="fs-5 text-muted">Aby zamówić paczkę. Uzupełnij wszystkie wymagane dane</p>
+        </div>
+    </header>
 
-            <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-                <h1 class="display-4 fw-normal">Zamów paczkę</h1>
-                <p class="fs-5 text-muted">It is a long established fact that a reader will be distracted by the
-                    readable content of a page when looking at its layout.</p>
-            </div>
-        </header>
+    <main>
 
-        <main>
-            <div class="row">
-                <div class="col-12">
-                    <h5>Nadawca</h5>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Imię</label>
-                    <input type="text" class="form-control" id="inputEmail4">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Nazwisko</label>
-                    <input type="text" class="form-control" id="inputPassword4">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label">E-mail</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="E-mail">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label">Adres</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="">
-                </div>
-                <div class="col-md-8">
-                    <label for="inputCity" class="form-label">Miasto</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="col-md-4">
-                    <label for="inputZip" class="form-label">Kod pocztowy</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div>
-            </div>
+        {{ form_start(form) }}
 
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h5>Adresat</h5>
-                </div>
+        <div class="row">
+            <div class="col-12">
+                <h5>Nadawca</h5>
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Imię</label>
-                    <input type="text" class="form-control" id="inputEmail4">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Nazwisko</label>
-                    <input type="text" class="form-control" id="inputPassword4">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label">E-mail</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="E-mail">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label">Adres</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="">
-                </div>
-                <div class="col-md-8">
-                    <label for="inputCity" class="form-label">Miasto</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="col-md-4">
-                    <label for="inputZip" class="form-label">Kod pocztowy</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div>
-            </div>
+        </div>
 
-
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h5>Dane paczki</h5>
-                </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                {{ form_row(form.senderAddress.firstName) }}
             </div>
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">Firma kurierska</label>
-                    <select id="inputState" class="form-select">
-                        {% for courier in couriers %}
-                            <option value="{{ courier.id }}">{{ courier.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label">Zawartość</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="">
-                </div>
-                <div class="col-12">
-                    <label for="inputAddress" class="form-label">Dodatkowe informacje</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="">
-                </div>
+            <div class="col-md-6">
+                {{ form_row(form.senderAddress.lastName) }}
             </div>
-
-            <div class="row mt-2">
-                <div class="col-12 mt-3">
-                    <button type="submit" class="btn btn-primary">Zamów</button>
-                </div>
+            <div class="col-12">
+                {{ form_row(form.senderAddress.email) }}
             </div>
-        </main>
-
-        <footer class="pt-4 my-md-5 pt-md-5 border-top">
-            <div class="row">
-                <div class="col-12 col-md">
-                    Super paczka
-                    <small class="d-block mb-3 text-muted">&copy; 2021</small>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>Paczki</h5>
-                    <ul class="list-unstyled text-small">
-                        {% for parcelType in parcelTypes %}
-                            <li class="mb-1">
-                                <a class="link-secondary text-decoration-none">{{ parcelType.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>Kurierzy</h5>
-                    <ul class="list-unstyled text-small">
-                        {% for courier in couriers %}
-                            <li class="mb-1">
-                                <a class="link-secondary text-decoration-none" href="{{ courier.www }}" target="_blank">
-                                    {{ courier.name }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>Pomoc</h5>
-                    <ul class="list-unstyled text-small">
-                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Jak zamówić paczkę</a>
-                        </li>
-                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Co muszę wiedzieć</a>
-                        </li>
-                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Jak założyć konto</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-12">
+                {{ form_row(form.senderAddress.street) }}
             </div>
-        </footer>
-    </div>
+            <div class="col-md-8">
+                {{ form_row(form.senderAddress.city) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.senderAddress.postalCode) }}
+            </div>
+        </div>
 
+        <div class="row mt-5">
+            <div class="col-12">
+                <h5>Adresat</h5>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                {{ form_row(form.recipientAddress.firstName) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.recipientAddress.lastName) }}
+            </div>
+            <div class="col-12">
+                {{ form_row(form.recipientAddress.email) }}
+            </div>
+            <div class="col-12">
+                {{ form_row(form.recipientAddress.street) }}
+            </div>
+            <div class="col-md-8">
+                {{ form_row(form.recipientAddress.city) }}
+            </div>
+            <div class="col-md-4">
+                {{ form_row(form.recipientAddress.postalCode) }}
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <h5>Dane paczki</h5>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                {{ form_row(form.courier) }}
+            </div>
+            <div class="col-12">
+                {{ form_row(form.content) }}
+            </div>
+            <div class="col-12">
+                {{ form_row(form.additionalInformations) }}
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-12 mt-3">
+                {{ form_row(form.submit) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </main>
 
 {% endblock body %}

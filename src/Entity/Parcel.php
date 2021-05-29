@@ -30,13 +30,13 @@ class Parcel
     private $courier;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="parcels")
+     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="parcels", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $senderAddress;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="parcels")
+     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="parcels", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $recipientAddress;

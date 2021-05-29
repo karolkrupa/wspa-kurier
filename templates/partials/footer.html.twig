@@ -1,0 +1,41 @@
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+        <div class="col-12 col-md">
+            Super paczka
+            <small class="d-block mb-3 text-muted">&copy; 2021</small>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Paczki</h5>
+            <ul class="list-unstyled text-small">
+                {% for parcelType in parcelTypes %}
+                    <li class="mb-1">
+                        <a class="link-secondary text-decoration-none">{{ parcelType.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Kurierzy</h5>
+            <ul class="list-unstyled text-small">
+                {% for courier in couriers %}
+                    <li class="mb-1">
+                        <a class="link-secondary text-decoration-none" href="{{ courier.www }}" target="_blank">
+                            {{ courier.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Pomoc</h5>
+            <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Jak zamówić paczkę</a>
+                </li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Co muszę wiedzieć</a>
+                </li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Jak założyć konto</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
