@@ -22,6 +22,7 @@ class UserFixtures extends Fixture
         $user->setEmail('admin@local.local');
         $user->setFirstName('Admin');
         $user->setLastName('Admin');
+        $user->setRoles(['ROLE_ADMIN']);
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
             'secret'
@@ -34,6 +35,7 @@ class UserFixtures extends Fixture
         $user->setFirstName('Kurier1');
         $user->setLastName('Kurier1');
         $user->setType(User::TYPE_COURIER);
+        $user->setRoles(['ROLE_COURIER']);
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
             'secret'

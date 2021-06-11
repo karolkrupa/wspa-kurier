@@ -66,4 +66,20 @@ class ParcelsController extends AbstractController
             'parcels' => $parcels
         ]);
     }
+
+    /**
+     * @Route("/parcels/in-delivery", name="admin.parcels.in-delivery.index")
+     */
+    public function inDeliveryAction()
+    {
+        /** @var EntityManagerInterface $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $parcels = $em->getRepository(Parcel::class)
+            ->getInDelivery();
+
+        return $this->render('admin/parcels_in_delivery.html.twig', [
+            'parcels' => $parcels
+        ]);
+    }
 }

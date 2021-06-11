@@ -51,22 +51,22 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.index' %} active {% endif %}"
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.delivery.index' %} active {% endif %}"
                            href="{{ url('admin.parcels.delivery.index') }}">
                             <span data-feather="users"></span>
                             Do dostarczenia
                         </a>
                     </li>
-                    <li class="nav-item {% if app.request.attributes.get('_route') == 'admin.parcels.index' %} active {% endif %}">
-                        <a class="nav-link" href="{{ url('admin.parcels.pickup.index') }}">
+                    <li class="nav-item ">
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.pickup.index' %} active {% endif %}" href="{{ url('admin.parcels.pickup.index') }}">
                             <span data-feather="users"></span>
                             Do odebrania
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="bar-chart-2"></span>
-                            Reports
+                    <li class="nav-item ">
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.in-delivery.index' %} active {% endif %}" href="{{ url('admin.parcels.in-delivery.index') }}">
+                            <span data-feather="users"></span>
+                            W dostarczeniu
                         </a>
                     </li>
                     <li class="nav-item">

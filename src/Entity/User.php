@@ -16,6 +16,10 @@ class User implements UserInterface
     const TYPE_USER = 'USER';
     const TYPE_COURIER = 'COURIER';
 
+    public function __toString() {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

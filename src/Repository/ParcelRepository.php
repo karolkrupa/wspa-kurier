@@ -45,6 +45,19 @@ class ParcelRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Parcel[] Returns an array of Parcel objects
+     */
+    public function getInDelivery()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.courier IS NOT NULL')
+            ->andWhere('p.warehouse IS NULL')
+            ->andWhere('p.delivered = 0')
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Parcel
