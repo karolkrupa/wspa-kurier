@@ -47,19 +47,20 @@
                                 href="{{ url('admin.parcels.index') }}"
                         >
                             <span data-feather="file"></span>
-                            Zamówienia
+                            Paczki
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="shopping-cart"></span>
-                            Products
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.index' %} active {% endif %}"
+                           href="{{ url('admin.parcels.delivery.index') }}">
                             <span data-feather="users"></span>
-                            Customers
+                            Do dostarczenia
+                        </a>
+                    </li>
+                    <li class="nav-item {% if app.request.attributes.get('_route') == 'admin.parcels.index' %} active {% endif %}">
+                        <a class="nav-link" href="{{ url('admin.parcels.pickup.index') }}">
+                            <span data-feather="users"></span>
+                            Do odebrania
                         </a>
                     </li>
                     <li class="nav-item">

@@ -34,4 +34,36 @@ class ParcelsController extends AbstractController
             'parcels' => $parcels
         ]);
     }
+
+    /**
+     * @Route("/parcels/pickup", name="admin.parcels.pickup.index")
+     */
+    public function toPickupAction()
+    {
+        /** @var EntityManagerInterface $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $parcels = $em->getRepository(Parcel::class)
+            ->getToPickup();
+
+        return $this->render('admin/parcels_to_pickup.html.twig', [
+            'parcels' => $parcels
+        ]);
+    }
+
+    /**
+     * @Route("/parcels/delivery", name="admin.parcels.delivery.index")
+     */
+    public function toDeliveryAction()
+    {
+        /** @var EntityManagerInterface $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $parcels = $em->getRepository(Parcel::class)
+            ->getToDelivery();
+
+        return $this->render('admin/parcels_to_delivery.html.twig', [
+            'parcels' => $parcels
+        ]);
+    }
 }

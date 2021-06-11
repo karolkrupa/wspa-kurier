@@ -16,10 +16,8 @@
             <tr>
                 <th>#</th>
                 <th>Nadawca</th>
-                <th>Odbiorca</th>
                 <th>Zawartość</th>
                 <th>Dodatkowe informacje</th>
-                <th>Kurier</th>
                 <th>Typ</th>
             </tr>
             </thead>
@@ -33,16 +31,10 @@
                         {{ parcel.senderAddress }}
                     </td>
                     <td>
-                        {{ parcel.recipientAddress }}
-                    </td>
-                    <td>
                         {{ parcel.content }}
                     </td>
                     <td>
                         {{ parcel.additionalInformations|default("Brak") }}
-                    </td>
-                    <td>
-                        {{ parcel.courier }}
                     </td>
                     <td>
                         {{ parcel.type }}
