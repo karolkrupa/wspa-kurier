@@ -19,8 +19,8 @@
                 <th>Odbiorca</th>
                 <th>Zawartość</th>
                 <th>Dodatkowe informacje</th>
-                <th>Kurier</th>
                 <th>Typ</th>
+                <th>Status</th>
             </tr>
             </thead>
             <tbody>
@@ -42,10 +42,10 @@
                         {{ parcel.additionalInformations|default("Brak") }}
                     </td>
                     <td>
-
+                        {{ parcel.type }}
                     </td>
                     <td>
-                        {{ parcel.type }}
+                        {{ parcel.status }}
                     </td>
                 </tr>
             {% endfor %}

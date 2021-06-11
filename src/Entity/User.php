@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -51,6 +53,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $type = self::TYPE_USER;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Parcel::class, mappedBy="courier")
+     */
+    private $parcels;
+
+    public function __construct()
+    {
+        $this->parcels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -165,6 +177,36 @@ class User implements UserInterface
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parcel[]
+     */
+    public function getParcels(): Collection
+    {
+        return $this->parcels;
+    }
+
+    public function addParcel(Parcel $parcel): self
+    {
+        if (!$this->parcels->contains($parcel)) {
+            $this->parcels[] = $parcel;
+            $parcel->setCourier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParcel(Parcel $parcel): self
+    {
+        if ($this->parcels->removeElement($parcel)) {
+            // set the owning side to null (unless already changed)
+            if ($parcel->getCourier() === $this) {
+                $parcel->setCourier(null);
+            }
+        }
 
         return $this;
     }

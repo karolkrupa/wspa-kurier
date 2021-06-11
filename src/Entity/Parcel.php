@@ -50,6 +50,16 @@ class Parcel
      */
     private $warehouse;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="parcels")
+     */
+    private $courier;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $delivered;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,6 +133,53 @@ class Parcel
     public function setWarehouse(?Warehouse $warehouse): self
     {
         $this->warehouse = $warehouse;
+
+        return $this;
+    }
+
+    public function getStatus() {
+        if($this->delivered) {
+            return 'Dostarczona';
+        }
+
+        /**
+         * Nie jest przypisana do magazynu i kuriera
+         */
+        if(!$this->warehouse && !$this->courier) {
+            return 'Oczekuje na odebranie';
+        }
+
+        if($this->warehouse) {
+            return 'W magazynie';
+        }
+
+        if($this->courier) {
+            return 'Odebrana przez kuriera';
+        }
+
+        return 'Nieznany';
+    }
+
+    public function getCourier(): ?User
+    {
+        return $this->courier;
+    }
+
+    public function setCourier(?User $courier): self
+    {
+        $this->courier = $courier;
+
+        return $this;
+    }
+
+    public function getDelivered(): ?bool
+    {
+        return $this->delivered;
+    }
+
+    public function setDelivered(bool $delivered): self
+    {
+        $this->delivered = $delivered;
 
         return $this;
     }
