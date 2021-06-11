@@ -29,15 +29,6 @@ class ParcelType extends AbstractType
             ->add('additionalInformations', TextType::class, [
                 'label' => 'Dodatkowe Informacje'
             ])
-            ->add('courier', EntityType::class, [
-                'class' => Courier::class,
-                'label' => 'Firma kurierska',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'To pole jest wymagane'
-                    ])
-                ]
-            ])
             ->add('senderAddress', AddressType::class, [
                 'label' => 'Nadawca',
                 'constraints' => [

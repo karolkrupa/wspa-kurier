@@ -31,13 +31,8 @@ class IndexController extends AbstractController
             ->getRepository(ParcelType::class)
             ->findAll();
 
-        $couriers = $this->getDoctrine()->getManager()
-            ->getRepository(Courier::class)
-            ->findAll();
-
         return $this->render('partials/footer.html.twig', [
-            'parcelTypes' => $parcelTypes,
-            'couriers' => $couriers
+            'parcelTypes' => $parcelTypes
         ]);
     }
 }

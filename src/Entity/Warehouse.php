@@ -2,21 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\CourierRepository;
+use App\Repository\WarehouseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CourierRepository::class)
+ * @ORM\Entity(repositoryClass=WarehouseRepository::class)
  */
-class Courier
+class Warehouse
 {
-    public function __toString()
-    {
-        return $this->name;
-    }
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -25,19 +20,14 @@ class Courier
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity=Parcel::class, mappedBy="warehouse")
+     */
+    private $parcels;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $www;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Parcel::class, mappedBy="courier")
-     */
-    private $parcels;
 
     public function __construct()
     {
@@ -47,30 +37,6 @@ class Courier
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getWww(): ?string
-    {
-        return $this->www;
-    }
-
-    public function setWww(?string $www): self
-    {
-        $this->www = $www;
-
-        return $this;
     }
 
     /**
@@ -85,7 +51,7 @@ class Courier
     {
         if (!$this->parcels->contains($parcel)) {
             $this->parcels[] = $parcel;
-            $parcel->setCourier($this);
+            $parcel->setWarehouse($this);
         }
 
         return $this;
@@ -95,10 +61,22 @@ class Courier
     {
         if ($this->parcels->removeElement($parcel)) {
             // set the owning side to null (unless already changed)
-            if ($parcel->getCourier() === $this) {
-                $parcel->setCourier(null);
+            if ($parcel->getWarehouse() === $this) {
+                $parcel->setWarehouse(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

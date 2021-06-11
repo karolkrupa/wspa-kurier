@@ -28,6 +28,19 @@ class UserFixtures extends Fixture
         ));
 
         $manager->persist($user);
+
+        $user = new User();
+        $user->setEmail('courier@local.local');
+        $user->setFirstName('Kurier1');
+        $user->setLastName('Kurier1');
+        $user->setType(User::TYPE_COURIER);
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            'secret'
+        ));
+
+        $manager->persist($user);
+
         $manager->flush();
     }
 }

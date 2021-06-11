@@ -24,12 +24,6 @@ class Parcel
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Courier::class, inversedBy="parcels")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $courier;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="parcels", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -51,6 +45,11 @@ class Parcel
      */
     private $additionalInformations;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Warehouse::class, inversedBy="parcels")
+     */
+    private $warehouse;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -64,18 +63,6 @@ class Parcel
     public function setType(?ParcelType $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getCourier(): ?Courier
-    {
-        return $this->courier;
-    }
-
-    public function setCourier(?Courier $courier): self
-    {
-        $this->courier = $courier;
 
         return $this;
     }
@@ -124,6 +111,18 @@ class Parcel
     public function setAdditionalInformations(?string $additionalInformations): self
     {
         $this->additionalInformations = $additionalInformations;
+
+        return $this;
+    }
+
+    public function getWarehouse(): ?Warehouse
+    {
+        return $this->warehouse;
+    }
+
+    public function setWarehouse(?Warehouse $warehouse): self
+    {
+        $this->warehouse = $warehouse;
 
         return $this;
     }

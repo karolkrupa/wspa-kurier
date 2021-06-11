@@ -11,6 +11,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    const TYPE_USER = 'USER';
+    const TYPE_COURIER = 'COURIER';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -43,6 +46,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type = self::TYPE_USER;
 
     public function getId(): ?int
     {
@@ -145,6 +153,18 @@ class User implements UserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
