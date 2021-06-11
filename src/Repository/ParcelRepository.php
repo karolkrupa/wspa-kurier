@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Parcel;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,20 @@ class ParcelRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Parcel::class);
+    }
+
+    /**
+     * @return Parcel[] Returns an array of Parcel objects
+     */
+    public function getUser(User $user)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.courier = :user')
+            ->andWhere('p.warehouse IS NULL')
+            ->andWhere('p.delivered = 0')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
     }
 
     /**

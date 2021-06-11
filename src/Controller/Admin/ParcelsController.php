@@ -5,8 +5,12 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Parcel;
+use App\Form\ParcelsDeliveredType;
+use App\Form\ParcelsPickupType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -38,7 +42,7 @@ class ParcelsController extends AbstractController
     /**
      * @Route("/parcels/pickup", name="admin.parcels.pickup.index")
      */
-    public function toPickupAction()
+    public function toPickupAction(Request $request)
     {
         /** @var EntityManagerInterface $em */
         $em = $this->getDoctrine()->getManager();
@@ -46,8 +50,75 @@ class ParcelsController extends AbstractController
         $parcels = $em->getRepository(Parcel::class)
             ->getToPickup();
 
-        return $this->render('admin/parcels_to_pickup.html.twig', [
+        $form = $this->createForm(ParcelsPickupType::class, [
             'parcels' => $parcels
+        ]);
+
+        $form->handleRequest($request);
+
+        dump($form);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            foreach ($form->get('parcels')->all() as $parcelForm) {
+                if($parcelForm->get('select')->getData()) {
+                    /** @var Parcel $parcel */
+                    $parcel = $parcelForm->getData();
+
+                    /**
+                     * Przypisywanie aktualnego użytkownika jako kuriera
+                     */
+                    $parcel->setCourier($this->getUser());
+                }
+            }
+
+            $em->flush();
+        }
+
+        return $this->render('admin/parcels_to_pickup.html.twig', [
+            'parcels' => $parcels,
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/parcels/my", name="admin.parcels.my.index")
+     */
+    public function myParcelsAction(Request $request)
+    {
+        /** @var EntityManagerInterface $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $parcels = $em->getRepository(Parcel::class)
+            ->getUser($this->getUser());
+
+        $form = $this->createForm(ParcelsDeliveredType::class, [
+            'parcels' => $parcels
+        ]);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            foreach ($form->get('parcels')->all() as $parcelForm) {
+                if($parcelForm->get('select')->getData()) {
+                    /** @var Parcel $parcel */
+                    $parcel = $parcelForm->getData();
+
+                    /**
+                     * Oznaczenie paczki jako dostarczona
+                     */
+                    $parcel->markAsDelivered();
+                }
+            }
+
+            $em->flush();
+
+            return $this->redirectToRoute('admin.parcels.my.index');
+        }
+
+        return $this->render('admin/parcels_to_pickup.html.twig', [
+            'parcels' => $parcels,
+            'form' => $form->createView()
         ]);
     }
 

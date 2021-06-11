@@ -177,6 +177,12 @@ class Parcel
         return $this->delivered;
     }
 
+    public function markAsDelivered() {
+        $this->courier = null;
+        $this->warehouse = null;
+        $this->delivered = true;
+    }
+
     public function setDelivered(bool $delivered): self
     {
         $this->delivered = $delivered;

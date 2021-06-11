@@ -32,6 +32,7 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
                         <a
                                 class="nav-link {% if app.request.attributes.get('_route') == 'admin.index' %} active {% endif %}"
@@ -50,6 +51,19 @@
                             Paczki
                         </a>
                     </li>
+                    {% endif %}
+
+                    {% if app.user.hasRole('ROLE_COURIER') %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.my.index' %} active {% endif %}"
+                           href="{{ url('admin.parcels.my.index') }}">
+                            <span data-feather="file-text"></span>
+                            Moje paczki
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
                         <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.delivery.index' %} active {% endif %}"
                            href="{{ url('admin.parcels.delivery.index') }}">
@@ -57,58 +71,55 @@
                             Do dostarczenia
                         </a>
                     </li>
+                    {% endif %}
                     <li class="nav-item ">
                         <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.pickup.index' %} active {% endif %}" href="{{ url('admin.parcels.pickup.index') }}">
                             <span data-feather="users"></span>
                             Do odebrania
                         </a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item ">
                         <a class="nav-link {% if app.request.attributes.get('_route') == 'admin.parcels.in-delivery.index' %} active {% endif %}" href="{{ url('admin.parcels.in-delivery.index') }}">
                             <span data-feather="users"></span>
                             W dostarczeniu
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="layers"></span>
-                            Integrations
-                        </a>
-                    </li>
+                    {% endif %}
                 </ul>
 
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Saved reports</span>
-                    <a class="d-flex align-items-center text-muted" href="#">
-                        <span data-feather="plus-circle"></span>
-                    </a>
-                </h6>
-                <ul class="nav flex-column mb-2">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Current month
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Last quarter
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Social engagement
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Year-end sale
-                        </a>
-                    </li>
-                </ul>
+{#                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">#}
+{#                    <span>Saved reports</span>#}
+{#                    <a class="d-flex align-items-center text-muted" href="#">#}
+{#                        <span data-feather="plus-circle"></span>#}
+{#                    </a>#}
+{#                </h6>#}
+{#                <ul class="nav flex-column mb-2">#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="#">#}
+{#                            <span data-feather="file-text"></span>#}
+{#                            Current month#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="#">#}
+{#                            <span data-feather="file-text"></span>#}
+{#                            Last quarter#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="#">#}
+{#                            <span data-feather="file-text"></span>#}
+{#                            Social engagement#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="#">#}
+{#                            <span data-feather="file-text"></span>#}
+{#                            Year-end sale#}
+{#                        </a>#}
+{#                    </li>#}
+{#                </ul>#}
             </div>
         </nav>
 
@@ -118,9 +129,9 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"#}
+{#        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"#}
+{#        crossorigin="anonymous"></script>#}
 
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

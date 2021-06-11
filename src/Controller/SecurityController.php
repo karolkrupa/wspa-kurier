@@ -15,7 +15,11 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
          if ($this->getUser()) {
-             return $this->redirectToRoute('admin.index');
+             if($this->isGranted('ROLE_ADMIN')) {
+                 return $this->redirectToRoute('admin.index');
+             }
+
+             return $this->redirectToRoute('admin.parcels.pickup.index');
          }
 
         // get the login error if there is one
