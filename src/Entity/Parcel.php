@@ -58,7 +58,7 @@ class Parcel
     /**
      * @ORM\Column(type="boolean")
      */
-    private $delivered;
+    private $delivered = false;
 
     public function getId(): ?int
     {
