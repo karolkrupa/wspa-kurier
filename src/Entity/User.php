@@ -216,6 +216,9 @@ class User implements UserInterface
     }
 
     public function hasRole(string $role) {
+        dump($role);
+        dump($this->roles);
+        dump(in_array($role, $this->roles));
         return in_array($role, $this->roles);
     }
 }
